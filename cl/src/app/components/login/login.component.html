@@ -1,0 +1,15 @@
+<p style="text-align: center; color: red;" *ngIf="er">{{error}}</p>
+<form (ngSubmit)="login()">
+  <div class="imgcontainer">
+  </div>
+
+  <div class="container">
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" [(ngModel)]="email" name="email" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" [(ngModel)]="password" name="psw" required>
+
+    <button type="submit">Login</button>
+  </div>
+</form>

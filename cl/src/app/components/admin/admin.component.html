@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Users</h2>
+ <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Firstname</th>
+        <th>Password</th>
+        <th>Admin</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{i}}</td>
+        <td ><div (dblclick)="changeMethod(i,$event)" *ngIf="!user.change">{{user.name}}</div><div><input  (keyup.enter)="saveNewObj(i,$event)" *ngIf="user.change" [(ngModel)]="changeObject.name" type="text" value="{{changeObject.name}}"></div></td>
+        <td>{{user.password}}</td>
+        <td><div (dblclick)="changeMethod(i,$event)" *ngIf="!user.change">{{user.admin}}</div><div><input  (keyup.enter)="saveNewObj(i,$event)" *ngIf="user.change" [(ngModel)]="changeObject.admin" type="text" value="{{changeObject.admin}}"></div></td>
+        <td><button type="button" (click)="delete(user._id,i)" class="btn btn-danger">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>

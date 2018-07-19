@@ -1,0 +1,16 @@
+<div class="header">
+  <a href="#default" class="logo">Online Store</a><a style="text-align: center;" href="#default" class="logo">{{email}}</a> 
+  <div class="header-right">
+    <a routerLink="/home" routerLinkActive="active">Home</a>
+    <div style="display: inline-block;" *ngIf="admin">
+      <a routerLink="/admin" routerLinkActive="active">Admin</a>
+  </div>
+      <div style="display: inline-block;" *ngIf="!login">
+        <a routerLink="/login" routerLinkActive="active">Login</a>
+        <a routerLink="/register" routerLinkActive="active">Register</a>
+    </div>
+    <div style="display: inline-block;" *ngIf="login">
+      <a (click)="logout()">Logout</a>
+  </div>
+  </div>
+</div>

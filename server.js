@@ -31,19 +31,23 @@ app.get('/',function(req,res){
 
 app.get('/setup',function(req,res){
 
-    var dema = new User({
-        name: 'Dema',
-        password: 'd09111997',
-        admin: true
-    });
+    var users=[];
 
-    dema.save(function(err){
+    for(let i =0;i<=100;i++){
+        users.push(new User({
+            name: 'Dema'+ i,
+            password: 'd09111997'+i,
+            admin: false
+        }));
+    }
+
+    User.create(users,function(err){
         if(err) throw err;
 
-        console.log('User saved');
-
-        res.json({success: true});
+        res.send({success:true});
     });
+
+
 
 });
 

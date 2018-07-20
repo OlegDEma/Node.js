@@ -58,7 +58,7 @@ export class AdminService implements OnInit {
       }));
   }
 
-  delete(id,index){
+  delete(id){
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',

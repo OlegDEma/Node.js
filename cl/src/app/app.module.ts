@@ -17,6 +17,8 @@ import { AuthGuardService as AuthGuard, AuthGuardService } from './services/Auth
 import { AuthService } from './services/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LoginService } from 'src/app/services/login.service';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { JwPaginationComponent } from 'jw-angular-pagination';
 
 
 
@@ -39,13 +41,21 @@ const appRoutes: Routes = [
     LoginComponent,
     RegistrationComponent,
     HomeComponent,
-    AdminComponent
+    AdminComponent,
+    JwPaginationComponent,
+    
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     ),
+    SweetAlert2Module.forRoot({
+      buttonsStyling: false,
+      customClass: 'modal-content',
+      confirmButtonClass: 'btn btn-primary',
+      cancelButtonClass: 'btn'
+  }),
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { Http } from '@angular/http';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import { SwalComponent } from '@toverux/ngx-sweetalert2';
 
 
 @Component({
@@ -14,10 +15,23 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
 
+  @ViewChild('deleteSwal') private deleteSwal: SwalComponent;
+
   public users = [];
   public change:boolean = false;
   public changeObject;
+  public user_id;
+  public i;
+  public name = '';
+  public admin = '';
   form;
+
+  
+    // array of all items to be paged
+    items: Array<any>;
+ 
+    // current page of items
+    pageOfItems: Array<any>;
 
   constructor(private http:HttpClient,private adminService:AdminService) { }
 
@@ -35,15 +49,28 @@ export class AdminComponent implements OnInit {
          element.change = false;
        });
        this.users = data;
+       this.items = data;
       }
     );
   }
 
-  delete(id,index){
-   this.adminService.delete(id,index).subscribe(
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+}
+
+
+  delete(id){
+   this.adminService.delete(id).subscribe(
      (res =>{
         if(res['success'] ==  true){
-          this.users.splice(index,1);
+          for(let i = 0;i <= this.pageOfItems.length;i++){
+            if(this.pageOfItems[i]._id == id){
+              this.pageOfItems.splice(i,1);
+              this.onChangePage(this.pageOfItems);
+              return;
+            }
+          }
         }else{
           throw new Error('Error');
         }
@@ -56,21 +83,25 @@ changeMethod(index,event:Event){
   this.users[index].change = true;
 }
 
-saveNewObj(index,event){
-  console.log(this.changeObject);
-  if(this.changeObject.name != '' && this.changeObject.admin != '' && (this.changeObject.admin == 'true' || this.changeObject.admin == 'false')){
-    this.adminService.updateUser(this.changeObject).subscribe(
-      (res =>{
-        console.log(res);
-        this.users[index].change = false;
-        this.users[index] = this.changeObject;
-        this.change = false;
-      })
-    );
-  }else{
+saveNewObj(i,event){
+  if(this.changeObject.name == '' || this.changeObject.admin == null ){
     alert('ERROR');
+  }else{
+    if(!(this.changeObject.admin +'' == 'true' || this.changeObject.admin + '' == 'false')){
+      alert('ERROR');
+    }else{
+      this.adminService.updateUser(this.changeObject).subscribe(
+        (res =>{
+          this.pageOfItems[i].change = false;
+          this.pageOfItems[i] = this.changeObject;
+          this.pageOfItems[i].change = false;
+        })
+      );
+    }
   }
  
 }
+
+
 
 }

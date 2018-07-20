@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Users</h2>
- <div class="table-responsive">          
+ <div class="table-responsive">     
   <table class="table">
     <thead>
       <tr>
@@ -12,14 +12,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users; let i = index">
-        <td>{{i}}</td>
-        <td ><div (dblclick)="changeMethod(i,$event)" *ngIf="!user.change">{{user.name}}</div><div><input  (keyup.enter)="saveNewObj(i,$event)" *ngIf="user.change" [(ngModel)]="changeObject.name" type="text" value="{{changeObject.name}}"></div></td>
+      <tr *ngFor="let user of pageOfItems; let i = index">
+        <td>{{i + 1}}</td>
+        <td ><div (dblclick)="user.change = true; changeObject = user;" *ngIf="!user.change">{{user.name}}</div><div><input  (keyup.enter)="saveNewObj(i,$event);" *ngIf="user.change" [(ngModel)]="changeObject.name" type="text" value="{{changeObject.name}}"></div></td>
         <td>{{user.password}}</td>
-        <td><div (dblclick)="changeMethod(i,$event)" *ngIf="!user.change">{{user.admin}}</div><div><input  (keyup.enter)="saveNewObj(i,$event)" *ngIf="user.change" [(ngModel)]="changeObject.admin" type="text" value="{{changeObject.admin}}"></div></td>
-        <td><button type="button" (click)="delete(user._id,i)" class="btn btn-danger">Delete</button></td>
+        <td><div (dblclick)="user.change = true; changeObject = user;" *ngIf="!user.change">{{user.admin}}</div><div><input  (keyup.enter)="saveNewObj(i,$event);" *ngIf="user.change" [(ngModel)]="changeObject.admin" type="text" value="{{changeObject.admin}}"></div></td>
+        <td><button type="button" [swal]="deleteSwal"  class="btn btn-danger">Delete</button></td>
+        <swal
+            #deleteSwal
+            title="Delete {{user.name}}?"
+            text="This cannot be undone"
+            type="question"
+            [showCancelButton]="true"
+            [focusCancel]="true"
+            (confirm)="delete(user._id)">
+        </swal>
       </tr>
     </tbody>
   </table>
-  </div>
+    <div style="text-align: center"> <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination></div>     
+  </div>  
 </div>
+
+

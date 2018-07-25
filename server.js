@@ -6,6 +6,7 @@ var index = require('./routes/index');
 var jwt = require('jsonwebtoken');
 var config = require('./config');
 var User = require('./models/user');
+var Product = require('./models/product');
 var mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
 var app = express();
@@ -33,22 +34,54 @@ app.get('/setup',function(req,res){
 
     var users=[];
 
-    for(let i =0;i<=100;i++){
-        users.push(new User({
-            name: 'Dema'+ i,
-            password: 'd09111997'+i,
-            admin: false
-        }));
+    for(let i =0;i<=20;i++){
+        users.push(new Product({
+                  name:'Iphone '+i,
+                  price: 650 + i,
+                  discount: true,
+                  discountPersent: 10,
+                  newPrice: 500,
+                  category:'Telephone',
+                  subcategory:'Iphone',
+                  description:'Lorem',
+                  characteristics:'Lorem'
+              }));
     }
 
-    User.create(users,function(err){
+    Product.create(users,function(err){
         if(err) throw err;
 
         res.send({success:true});
     });
 
+    // var products = [];
+    // for(let i =0;i<=20;i++){
 
+    //       var product =  new Product({
+    //             name:'Iphone '+i,
+    //             price: 650,
+    //             discount: true,
+    //             discountPersent: 10,
+    //             newPrice: 500,
+    //             category:'Telephone',
+    //             subcategory:'Iphone',
+    //             description:'Lorem',
+    //             characteristics:'Lorem'
+    //         });
 
+    //         product.save(function(err){
+    //             if(err) throw err;
+    //             res.send({success:true});
+    //         });
+
+    // }
+        // Product.create(products,function(err,notes){
+        //     if(err) throw err
+        //     console.log(notes);
+
+        //     res.send({success:true});
+        // });
+    
 });
 
 function requireAdmin(request, response, next) {
@@ -104,6 +137,17 @@ apiRoutes.get('/users',requireAdmin,function(req,res){
         }else{
         res.json(users);
         }
+    });
+});
+
+app.get('/products',function(req,res){
+    Product.find({},function(err,products){
+        if(err){
+            throw err;
+        }else{
+            res.json(products);
+        }
+
     });
 });
 

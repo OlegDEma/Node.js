@@ -19,7 +19,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { LoginService } from 'src/app/services/login.service';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { JwPaginationComponent } from 'jw-angular-pagination';
+import { ProductsComponent } from './components/products/products.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
+import { OrderModule } from 'ngx-order-pipe';
+import { ErrorComponent } from './components/error/error.component';
 
 
 const appRoutes: Routes = [
@@ -27,8 +32,9 @@ const appRoutes: Routes = [
   { path: 'register',      component: RegistrationComponent },
   { path: 'home', component: HomeComponent },
   {path:'header', component:HeaderComponent},
+  {path:'products', component:ProductsComponent},
   {path:'admin', component:AdminComponent, canActivate:[AuthGuard]},
-  {path:'**',redirectTo:'home'}
+  {path:'**',component:ErrorComponent}
 ];
 
 
@@ -43,6 +49,8 @@ const appRoutes: Routes = [
     HomeComponent,
     AdminComponent,
     JwPaginationComponent,
+    ProductsComponent,
+    ErrorComponent,
     
   ],
   imports: [
@@ -61,6 +69,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     HttpModule,
+    NgxPaginationModule,
+    NgxSpinnerModule,
+    OrderModule,
   ],
   providers: [LoginService,AuthGuard,AuthService,JwtHelperService],
   bootstrap: [AppComponent]

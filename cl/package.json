@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve & nodemon server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -31,6 +31,9 @@
     "core-js": "^2.5.4",
     "jw-angular-pagination": "^1.0.5",
     "jwt-decode": "^2.2.0",
+    "ngx-order-pipe": "^2.0.1",
+    "ngx-pagination": "^3.1.1",
+    "ngx-spinner": "^6.0.0",
     "npm-install-peers": "^1.2.1",
     "rxjs": "^6.0.0",
     "sweetalert2": "^7.25.6",

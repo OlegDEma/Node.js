@@ -58,6 +58,13 @@ export class AdminService implements OnInit {
       }));
   }
 
+  getProducts(){
+    return this.http.get("http://localhost:3000/products").pipe(
+      map((res:any) => {
+        return res.json();
+      }));
+  }
+
   delete(id){
     let httpOptions = {
       headers: new HttpHeaders({

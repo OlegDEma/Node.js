@@ -1,0 +1,44 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.section ul li{
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    font-size: 18px;
+    background-color: blue;
+    width: 100px;   
+    text-align: center;
+    border: 1px solid white;
+    float: left;
+    color: white;
+    position: relative;
+}
+
+
+.section ul li:hover{
+    background-color: green;
+    color: gold;
+}
+
+.section ul ul{
+    display: none;
+}
+
+.section ul li:active > ul{
+    display: block;
+}
+
+.section ul li:in > ul{
+    display: block;
+}
+
+.section ul ul ul{
+    margin-left: 100px;
+    top: 0px;
+    position: absolute;
+}
+

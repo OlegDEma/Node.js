@@ -1,7 +1,7 @@
 <div class="container">
   <h2>Users</h2>
  <div class="table-responsive">     
-  <table class="table">
+  <table style="height: 500px;" class="table">
     <thead>
       <tr>
         <th>#</th>
@@ -30,8 +30,15 @@
       </tr>
     </tbody>
   </table>
-    <div style="text-align: center"> <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination></div>     
-  </div>  
+  <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-3">
+            <jw-pagination style="margin: auto;" [items]="items" [initialPage]="1" [pageSize]="10" (changePage)="onChangePage($event)"></jw-pagination>   
+          </div>
+      </div>
+    </div>    
+</div>  
 </div>
 
 

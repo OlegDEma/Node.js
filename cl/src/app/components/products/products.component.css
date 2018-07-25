@@ -1,0 +1,106 @@
+
+.row.content {height: 1500px}
+
+.row.search{
+    height: 100px;
+    background-color: white;
+    color: black;
+    text-align: left;
+}
+
+.searchProduct{
+    margin-top: 40px;
+}
+
+.box{
+    margin-left: 0;
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid gray;
+}
+
+
+
+.searchProduct input{
+    width: 60%;
+    height: 30px;
+    border-radius: 100px;
+    padding-left: 10px;
+    font-size: 1.4em;
+    border: 1px solid gray;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.products{
+    margin: 0;
+    padding: 0;
+    min-height: 1320px;
+}
+
+.sort{
+    padding-top: 15px;
+    padding-right: 30px;
+}
+
+.sort2{
+    float: right;
+    font-size: 1.5em;
+}
+
+.sort2 label{
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.sort2 select{
+    height: 24px;
+}
+
+.sort span{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.setting{
+    height: 60px;
+    border-bottom: 1px solid gray;
+    text-align: center;
+}
+
+.sidenav {
+    height: 100%;
+    border-right: 1px solid gray;
+    padding: 0;
+    margin: 0;
+  }
+
+.searchProduct input:focus {
+    width: 100%;
+    border: 1px solid rgb(93, 93, 255);
+    outline: none;
+}
+
+.searchProduct{
+    margin: 30px 0px 0px 20px;
+    height: 30px;
+}
+
+.btn-product{
+	width: 100%;
+}
+
+.thumbnail{
+    margin-top: 40px;
+}
+
+.detail:hover{
+    cursor: pointer;
+}
+
+.filters{
+    margin: auto;
+    height: 100%;
+    width: 90%;
+}
+

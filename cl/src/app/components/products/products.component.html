@@ -1,0 +1,80 @@
+
+    <!--<div class="row search">
+        <div class="col-md-4 searchProduct">
+            <input type="text" placeholder="Search...">
+        </div>
+    </div>
+  </div> -->
+  <div class='thetop'></div>
+<div class="container-fluid">
+  <div class="row content">
+      <div class="col-md-12 setting">          
+          <div class="sort">
+            <span>Category</span>
+            <div class="sort2">
+              <label for="">Sort by</label>
+              <select name="" (change)="sort($event.target.value)" id="">
+                <option value="1">від дешевих до дорогих</option>
+                <option value="2">від дорогих до дешевих</option>
+                <option value="3">популярні</option>
+                <option value="4">новинки</option>
+                <option value="5">акційні</option>
+                <option value="5" selected>за рейтингом</option>
+              </select>
+            </div>  
+          </div>
+        </div>
+      <div class="col-md-2 sidenav">
+        <div class="filters">
+            
+        </div>
+      </div>
+      <div class="col-md-10 products">
+         <div class="col-md-9 box">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 products">
+              <div *ngFor="let product of products | orderBy: order : reverse | paginate: { itemsPerPage: 9, currentPage: p }; let i of index" class="col-sm-6 col-md-4">
+                <div class="thumbnail" >
+                  <h4 class="text-center"><span class="label label-info detail">{{product.name}}</span></h4>
+                  <img src="http://placehold.it/650x450&text=Galaxy S5" class="img-responsive detail">
+                  <div class="caption">
+                    <div class="row">
+                      <div class="col-md-6 col-xs-6">
+                        <h3>{{product.name}}</h3>
+                      </div>
+                      <div class="col-md-6 col-xs-6 price">
+                        <h3>
+                        <label>${{product.price}}</label></h3>
+                      </div>
+                    </div>
+                    <p>{{product.description}}</p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <a class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a> 
+                      </div>
+                      <div class="col-md-6">
+                        <a href="#" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</a></div>
+                    </div>
+        
+                    <p> </p>
+                  </div>
+                </div>
+              </div>      
+                </div>         
+          </div>
+        </div>
+          <div class="col-md-6 offset-md-4">
+            <pagination-controls class="scroll" (pageChange)="p = $event"></pagination-controls>
+          </div>
+         </div>
+      </div>
+  </div>
+  </div>
+  <ngx-spinner
+  bdColor = "rgb(255,255,255)"
+  size = "large"
+  color = "#ee2222"
+  type = "ball-atom"
+  ></ngx-spinner>
+  
